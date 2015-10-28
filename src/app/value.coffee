@@ -58,29 +58,32 @@ module.exports = React.createClass
       fontSize: '12px'
       padding: '0 10px'
       fontFamily: reset.codeFonts
-      maxWidth: 300
-      overflowX: 'auto'
+      maxWidth: '300px'
+      overflowX: 'hidden'
       whiteSpace: 'nowrap'
+      textOverflow: 'ellipsis'
       color: hsl 0, 0, 90
+      flexShrink: 0
+      WebkitFlexShrink: 0
     assign more, baseStyle
 
   styleString: ->
-    @styleBase backgroundColor: hsl 0, 0, 20, 0.5
+    @styleBase backgroundColor: hsl 0, 0, 40, 0.2
 
   styleNumber: ->
-    @styleBase backgroundColor: hsl 240, 30, 40, 0.5
+    @styleBase backgroundColor: hsl 240, 30, 40, 0.3
 
   styleBoolean: ->
-    @styleBase backgroundColor: hsl 240, 50, 30, 0.5
+    @styleBase backgroundColor: hsl 240, 50, 30, 0.3
 
   styleNull: ->
-    @styleBase backgroundColor: hsl 240, 90, 40, 0.5
+    @styleBase backgroundColor: hsl 140, 40, 70, 0.2
 
   styleUndefined: ->
-    @styleBase backgroundColor: hsl 240, 90, 40, 0.5
+    @styleBase backgroundColor: hsl 140, 40, 70, 0.2
 
   styleMap: ->
-    @styleBase backgroundColor: hsl 200, 70, 60, 0.5
+    @styleBase backgroundColor: hsl 200, 70, 60, 0.3
 
   styleList: ->
-    @styleBase backgroundColor: hsl 40, 70, 70, 0.5
+    @styleBase backgroundColor: hsl 40, 70, 70, 0.3

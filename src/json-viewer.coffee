@@ -68,15 +68,17 @@ module.exports = React.createClass
     WebkitAlignItems: 'center'
     width: 'auto'
     padding: '4px 0px'
-    backgroundColor: if isActive then hsl(80,80,90,0.1)
+    backgroundColor: if isActive then hsl(80,80,90,0.2)
     color: 'white'
     cursor: 'pointer'
 
   styleBlock: ->
     fontFamily: reset.codeFonts
-    overflowY: 'scroll'
-    backgroundColor: hsl 0, 0, 100, 0.1
+    overflowY: 'auto'
     minWidth: 100
     marginRight: 10
     paddingTop: 100
     paddingBottom: 200
+    # scrollbar in Windows may look bad, so hide it
+    overflowX: 'hidden'
+    paddingRight: '2em'
