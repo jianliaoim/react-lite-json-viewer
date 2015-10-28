@@ -1,8 +1,7 @@
 
 React = require 'react'
-
-require('volubile-ui/ui/index.less')
+ReactDOM = require 'react-dom'
 
 Page = React.createFactory require './page'
 
-React.render Page(), document.querySelector('.demo')
+ReactDOM.render Page(), document.querySelector('.demo')

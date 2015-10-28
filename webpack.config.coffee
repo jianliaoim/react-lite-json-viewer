@@ -24,7 +24,7 @@ module.exports =
       {test: /\.less$/, loader: 'style!css!less'}
       {test: /\.css$/, loader: 'style!css!autoprefixer'}
       {test: /\.json$/, loader: 'json'}
-      {test: /\.(eot|woff|woff2|ttf|svg)((\?|\#)[\?\#\w\d_-]+)?$/, loader: "url", query: {limit: 100, name: fontName}}
+      {test: /\.(eot|woff|woff2|ttf|svg|jpg)((\?|\#)[\?\#\w\d_-]+)?$/, loader: "url", query: {limit: 100, name: fontName}}
     ]
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')

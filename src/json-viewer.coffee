@@ -1,42 +1,38 @@
+
+hsl = require 'hsl'
 React = require 'react'
 Immutable = require 'immutable'
+
+reset = require './util/reset'
 isSafari = require './util/is-safari'
 
-{div, span, pre} = React.DOM
+Value = React.createFactory require './app/value'
 
-typeColor =
-  list: 'rgba(245, 222, 179, .8)'
-  map: 'rgba(223, 245, 179, .8)'
+{div} = React.DOM
 
 T = React.PropTypes
 
 module.exports = React.createClass
-  displayName: 'json-viewer'
+  displayName: 'lite-json-viewer'
 
   propTypes:
-    data: T.any
-    height: T.number
-    path: T.instanceOf(Immutable.List)
-    onChange: T.func
+    data: T.instanceOf(Immutable.Collection).isRequired
+    height: T.number.isRequired
+    path: T.instanceOf(Immutable.List).isRequired
+    onChange: T.func.isRequired
 
-  filterType: (value) ->
-    if value instanceof Immutable.Map
-      'map'
-    else if value instanceof Immutable.List
-      'list'
-    else
-      JSON.stringify value
-
-  renderKeys: (stage) ->
+  renderEntries: (stage, index) ->
     value = @props.data.getIn(stage)
     if value instanceof Immutable.Collection
-      div style: @styleBlock(),
+      div style: @styleBlock(), key: index,
         value.keySeq().sort().map (entry, index) =>
           onClick = => @props.onChange stage.concat(entry)
           isActive = @props.path.get(stage.size) is entry
-          div key: index, style: @styleEntries(isActive), onClick: onClick,
-            span style: @styleKey(), entry
-            span style: @styleValue(stage.concat(entry)), @filterType value.get(entry)
+          div key: index, style: @styleEntry(isActive), onClick: onClick,
+            Value value: entry
+            Value value: value.get(entry)
+    else
+      Value value: value
 
   render: ->
     div style: @styleRoot(),
@@ -46,11 +42,11 @@ module.exports = React.createClass
           @props.path[..index]
         .unshift Immutable.List()
         div style: @styleTable(),
-          pathList.map (path) =>
-            @renderKeys path
+          pathList.map (path, index) =>
+            @renderEntries path, index
       else
-        pre style: @styleBlock(),
-          if @props.data? then @props.data else 'null'
+        div style: @styleBlock(),
+          Value value: @props.data
 
   styleRoot: ->
     flex: 1
@@ -64,40 +60,23 @@ module.exports = React.createClass
     WebkitFlex: 1
     height: @props.height
 
-  styleEntries: (isActive) ->
+  styleEntry: (isActive) ->
     display: if isSafari then '-webkit-flex' else 'flex'
     flexDirection: 'row'
     WebkitFlexDirection: 'row'
+    alignItems: 'center'
+    WebkitAlignItems: 'center'
     width: 'auto'
-    overflowY: 'auto'
-    overflowX: 'visible'
-    padding: '10px'
-    color: if isActive then '#D45502' else '#FFF'
+    padding: '4px 0px'
+    backgroundColor: if isActive then hsl(80,80,90,0.1)
+    color: 'white'
     cursor: 'pointer'
 
-  styleKey: ->
-    flex: 1
-    WebkitFlex: 1
-    padding: '0 10px'
-    lineHeight: '24px'
-    fontSize: '12px'
-    display: 'inline-block'
-    marginRight: '10px'
-    marginBottom: '6px'
-
-  styleValue: (path) ->
-    flex: '0 0 auto'
-    WebkitFlex: '0 0 auto'
-    margin: 0
-    overflowY: 'auto'
-    fontSize: '12px'
-    padding: '0 10px'
-    fontFamily: 'Menlo, Consolas, Ubuntu Mono, monospace'
-    backgroundColor: typeColor[@filterType(@props.data.getIn(path))]
-
   styleBlock: ->
-    fontFamily: 'Menlo, Consolas, Ubuntu Mono, monospace'
+    fontFamily: reset.codeFonts
     overflowY: 'scroll'
-    backgroundColor: 'rgba(245, 245, 245, 0.2)'
-    minWidth: 200
+    backgroundColor: hsl 0, 0, 100, 0.1
+    minWidth: 100
     marginRight: 10
+    paddingTop: 100
+    paddingBottom: 200

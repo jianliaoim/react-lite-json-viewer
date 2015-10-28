@@ -11,7 +11,7 @@ gulp.task 'script', ->
   coffee = require('gulp-coffee')
   gulp
   .src('src/**/*.coffee')
-  .pipe coffee()
+  .pipe coffee(bare: true)
   .pipe gulp.dest('lib/')
 
 gulp.task 'rsync', (cb) ->
@@ -21,7 +21,7 @@ gulp.task 'rsync', (cb) ->
     src: ['index.html', 'build', 'src']
     recursive: true
     args: ['--verbose']
-    dest: 'talk-ui:/teambition/server/talk-ui/json-viewer'
+    dest: 'talk-ui:/teambition/server/talk-ui/react-lite-json-viewer'
     deleteAll: true
   , (error, stdout, stderr, cmd) ->
     if error?

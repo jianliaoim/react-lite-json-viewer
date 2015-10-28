@@ -1,0 +1,9 @@
+
+/build/
+/data/
+/images/
+/src/
+/webpack.*
+/gulpfile.*
+/index.html
+/template.*

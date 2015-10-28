@@ -1,26 +1,36 @@
+
+React Lite JSON Viewer
 ----
+
+Demo http://ui.talk.ai/react-lite-json-viewer/
+
+Component for exploring Store in JSON.
+
 ### Usage
+
+```bash
+npm i --save react-lite-json-viewer
+```
+
+```coffee
+LiteJSONViewer = require 'react-lite-json-viewer'
+
+LiteJSONViewer
+  height: 500
+  data: Immutable.fromJS(jianliaoData)
+  path: @state.path # Immutable.List()
+  onChange: @onPathChange
+```
+
+Read more in `src/`.
 
 ### Develop
 
-```text
-npm i
-```
+https://github.com/teambition/coffee-webpack-starter
 
-You need a static file server for the HTML files. Personally I suggest using Nginx.
+### Background
 
-Develop:
-
-```bash
-gulp html # regenerate index.html
-webpack-dev-server --hot # enable live-reloading
-```
-
-Build (Pack and optimize js, reivision js and add entry in `index.html`):
-
-```bash
-gulp build
-```
+http://fotonin.com/data_images/out/15/892020-space-wallpaper-hd.jpg
 
 ### License
 
