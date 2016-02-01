@@ -6,7 +6,7 @@
   "dependencies": {
     "hsl": "^0.1.1",
     "immutable": "^3.7.5",
-    "object-assign": "^4.0.1",
+    "object-assign": ">=3.0.0",
     "react": ">=0.13.1"
   },
   "devDependencies": {
