@@ -58,7 +58,6 @@ module.exports = React.createClass
       fontSize: '12px'
       padding: '0 10px'
       fontFamily: reset.codeFonts
-      maxWidth: '300px'
       overflowX: 'hidden'
       whiteSpace: 'nowrap'
       textOverflow: 'ellipsis'

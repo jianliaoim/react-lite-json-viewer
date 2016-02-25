@@ -18,8 +18,12 @@ module.exports = React.createClass
   propTypes:
     data: T.instanceOf(Immutable.Collection).isRequired
     height: T.number.isRequired
+    width: T.number
     path: T.instanceOf(Immutable.List).isRequired
     onChange: T.func.isRequired
+
+  getDefaultProps: ->
+    width: 800
 
   renderEntries: (stage, index) ->
     value = @props.data.getIn(stage)
@@ -59,6 +63,8 @@ module.exports = React.createClass
     flex: 1
     WebkitFlex: 1
     height: @props.height
+    width: @props.width
+    overflowX: 'auto'
 
   styleEntry: (isActive) ->
     display: if isSafari then '-webkit-flex' else 'flex'
@@ -82,3 +88,4 @@ module.exports = React.createClass
     # scrollbar in Windows may look bad, so hide it
     overflowX: 'hidden'
     paddingRight: '2em'
+    flexShrink: 0

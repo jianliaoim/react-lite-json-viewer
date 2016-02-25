@@ -27,6 +27,7 @@ module.exports = React.createClass
         a style: @styleLink(), href: link, 'GitHub'
       JsonViewer
         height: 500
+        width: window.innerWidth - 200
         data: Immutable.fromJS(jianliao)
         path: @state.path
         onChange: @onPathChange
