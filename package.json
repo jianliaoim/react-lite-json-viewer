@@ -1,6 +1,6 @@
 {
   "name": "react-lite-json-viewer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Component for exploring store in JSON",
   "main": "lib/json-viewer.js",
   "dependencies": {

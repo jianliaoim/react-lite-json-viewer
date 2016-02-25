@@ -51,6 +51,7 @@ module.exports = React.createClass
   styleRoot: ->
     flex: 1
     WebkitFlex: 1
+    overflowX: 'auto'
 
   styleTable: ->
     display: if isSafari then '-webkit-flex' else 'flex'
