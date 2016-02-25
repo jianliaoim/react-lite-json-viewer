@@ -21,16 +21,18 @@ module.exports = React.createClass
     @setState {path}
 
   render: ->
-    div className: 'app-page',
+    div className: 'app-page', style: @stylePage,
       div style: @styleNote(),
         span null, 'JSON view in React, try clicks! Found more on '
         a style: @styleLink(), href: link, 'GitHub'
       JsonViewer
         height: 500
-        width: window.innerWidth - 200
         data: Immutable.fromJS(jianliao)
         path: @state.path
         onChange: @onPathChange
+
+  stylePage:
+    width: '100%'
 
   styleNote: ->
     color: 'white'
